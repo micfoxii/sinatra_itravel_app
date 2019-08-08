@@ -22,5 +22,9 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) ## ||= "or equals" calls on user find_by in first instance, then will call on current user
     end
+
+    def validate_signup
+      params[:name] != "" && params[:username] != "" && params[:email] != ""
+    end
   end
 end
