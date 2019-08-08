@@ -26,17 +26,17 @@ iTravel App for Users to record their travels, review their travel, and eventual
 - has_many :destinations
 
 #Destinations
-- :city
-- :state
-- :country
-- :trip_description
-- :slept_at
-- :slept_details
-- :restaurant_fav
-- :restaurant_details
-- :attraction_fav
-- :attraction_details
-- :recommendations
+      t.string :city
+      t.string :state
+      t.string :country
+      t.text :trip_description
+      t.string :slept_at
+      t.text :slept_details
+      t.string :restaurant_fav
+      t.text :restaurant_details
+      t.string :attraction_fav
+      t.text :attraction_details
+      t.text :recommendations
 
 - :user_id (foreign key)
 - TODO add date of trip?
@@ -51,10 +51,10 @@ iTravel App for Users to record their travels, review their travel, and eventual
 
 Specs:
 - [x] Use Sinatra to build the app
-- [ ] Use ActiveRecord for storing information in a database
-- [ ] Include more than one model class (e.g. User, Post, Category)
-- [ ] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
-- [ ] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
+- [x] Use ActiveRecord for storing information in a database
+- [x] Include more than one model class (e.g. User, Post, Category)
+- [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
+- [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
 - [ ] Include user accounts with unique login attribute (username or email)
 - [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 - [ ] Ensure that users can't modify content created by other users

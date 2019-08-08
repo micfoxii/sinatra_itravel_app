@@ -1,6 +1,6 @@
-michael = User.create(name: "Michael", email: "m@me.com", password_digest: "password")
-kelley = User.create(name: "Kelley", email: "k@me.com", password_digest: "password")
-pat = User.create(name: "Pat", email: "p@me.com", password_digest: "password")
+michael = User.create(name: "Michael", email: "m@me.com", password: "password")
+kelley = User.create(name: "Kelley", email: "k@me.com", password: "password")
+pat = User.create(name: "Pat", email: "p@me.com", password: "password")
 
 Destination.create(
     city: "Florence",
