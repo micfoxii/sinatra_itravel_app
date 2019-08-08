@@ -20,9 +20,12 @@ class UsersController < ApplicationController
 
     #TO DO SIGN UP ROUTE
     get '/signup' do
-
+        erb :'/users/signup'
     end
 
+    post '/users' do
+        binding.pry
+    end
     #SHOW ROUTE
     get '/users/:id' do
         "this is the show route"
