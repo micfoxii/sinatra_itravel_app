@@ -13,4 +13,14 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  helpers do 
+
+    def logged_in?
+      !!current_user ##double bang creates a boolean true/false response
+    end
+
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id]) ## ||= "or equals" calls on user find_by in first instance, then will call on current user
+    end
+  end
 end
