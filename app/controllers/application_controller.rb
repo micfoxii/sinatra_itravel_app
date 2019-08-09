@@ -42,6 +42,9 @@ class ApplicationController < Sinatra::Base
         redirect '/'
       end
     end
-    
+
+    def authorized_to_edit?(destination)
+      destination.user == current_user
+    end
   end
 end
