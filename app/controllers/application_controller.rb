@@ -33,7 +33,15 @@ class ApplicationController < Sinatra::Base
 
     def validate_destinations
       #exclude state for nil values
-      params[:city] != "" && params[:country] != "" && params[trip_description] && params[:slept_at] != "" && params[:slept_details] != "" && params[:restaurant_fav] != "" && params[:restaurant_details] != "" && params[:attraction_fav] != "" && params[:attraction_details] != "" && params[:recommendations]
+      params[:city] != "" && params[:state] !="" && params[:country] != "" && params[:trip_description] && params[:slept_at] != "" && params[:slept_details] != "" && params[:restaurant_fav] != "" && params[:restaurant_details] != "" && params[:attraction_fav] != "" && params[:attraction_details] != "" && params[:recommendations]
     end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        flash[:errors] = "Please login to view page."
+        redirect '/'
+      end
+    end
+    
   end
 end
