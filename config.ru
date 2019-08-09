@@ -9,5 +9,6 @@ use Rack::MethodOverride
 
 #mount other controllers
 
+use DestinationsController
 use UsersController
 run ApplicationController
