@@ -1,1 +1,7 @@
-Index for All Destinations
+<% @destinations.each do |destination| %>
+
+<h4><%= destination.city %>, <%= destination.state %>, <%= destination.country %></h4>
+<h6><a href="/destinations/<%= destination.id %>"><%= destination.created_at %></a></h6>
+<h5><%= destination.trip_description %></h5><br>
+
+<% end %>
