@@ -24,10 +24,22 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        binding.pry
+        if validate_signup
+        @user = User.create(params)
+        redirect "/users/#{@user.id}"
+        else
+
+        end
     end
+
     #SHOW ROUTE
     get '/users/:id' do
-        "this is the show route"
+        @user = User.find_by(id: params[:id ])
+        erb :'/users/show'
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/'
     end
 end
