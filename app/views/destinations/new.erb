@@ -1,8 +1,11 @@
 <h2>Create A New Destination</h2>
-<form action="/destinations/new" method="POST">
+<form class="" action="/destinations" method="post">
  <h3>Destination: </h3>
+    <label for="city">City:</label>
     <input type="text" name="city" placeholder="City">
-    <input type="text" name="state" placeholder="State">
+    <label for="state">State:</label>
+    <input type="text" name="state" placeholder="State" value="N/A">
+    <label for="country">Country:</label>
     <input type="text" name="country" placeholder="Country"><br><br>
  <h3>Trip Details:</h3>   
     <input type="text" name="trip_description" placeholder="Ex. When you went, what you did, etc?"><br><br>

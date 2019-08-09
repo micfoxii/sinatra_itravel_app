@@ -30,5 +30,10 @@ class ApplicationController < Sinatra::Base
     def validate_signup
       params[:name] != "" && params[:username] != "" && params[:email] != ""
     end
+
+    def validate_destinations
+      #exclude state for nil values
+      params[:city] != "" && params[:country] != "" && params[trip_description] && params[:slept_at] != "" && params[:slept_details] != "" && params[:restaurant_fav] != "" && params[:restaurant_details] != "" && params[:attraction_fav] != "" && params[:attraction_details] != "" && params[:recommendations]
+    end
   end
 end
