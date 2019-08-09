@@ -18,7 +18,6 @@ class UsersController < ApplicationController
         end
     end
 
-    #TO DO SIGN UP ROUTE
     get '/signup' do
         erb :'/users/signup'
     end
@@ -26,15 +25,17 @@ class UsersController < ApplicationController
     post '/users' do
         if validate_signup
         @user = User.create(params)
+        session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
         else
-
+            #TODO ADD FLASH MESSAGE
+        redirect 'users/signup'
         end
     end
 
     #SHOW ROUTE
     get '/users/:id' do
-        @user = User.find_by(id: params[:id ])
+        @user = User.find_by(id: params[:id])
         erb :'/users/show'
     end
 
