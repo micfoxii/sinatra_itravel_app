@@ -1,1 +1,23 @@
-Create New Destination Form
+<h2>Create A New Destination</h2>
+<form action="/destinations/new" method="POST">
+ <h3>Destination: </h3>
+    <input type="text" name="city" placeholder="City">
+    <input type="text" name="state" placeholder="State">
+    <input type="text" name="country" placeholder="Country"><br><br>
+ <h3>Trip Details:</h3>   
+    <input type="text" name="trip_description" placeholder="Ex. When you went, what you did, etc?"><br><br>
+ <h3>Lodging/Accomodations:</h3>   
+    <input type="text" name="slept_at" placeholder="Name"><br>
+    <input type="text" name="slept_details" placeholder="Notes"><br><br>
+ <h3>Favorite Restaurant:</h3>
+    <input type="text" name="restaurant_fav" placeholder="Name"><br>
+    <input type="text" name="restaurant_details" placeholder="Notes"><br><br>
+ <h3>Favorite Attraction:</h3>
+    <input type="text" name="attraction_fav" placeholder="Name"><br>
+    <input type="text" name="attraction_details" placeholder="Notes"><br><br>
+ <h3>Additional Recommendations:</h3>
+    <input type="text" name="recommendations" placeholder="Notes"><br><br>
+
+    <input type="submit" value= "Create Destination">
+
+</form>
