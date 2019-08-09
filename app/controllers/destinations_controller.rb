@@ -4,7 +4,7 @@ class DestinationsController < ApplicationController
         @destinations = Destination.all 
         erb :'destinations/index'
     end
-    
+
     get '/destinations/new' do
         if logged_in?
         erb:'/destinations/new'
@@ -79,6 +79,15 @@ class DestinationsController < ApplicationController
         end
     end
 
+    delete '/destinations/:id' do 
+        destination_instance
+        if authorized_to_edit?(@destination)
+            @destination.destroy
+            redirect '/destinations'
+        else
+            redirect '/destinations'
+        end
+    end
 
     ## Class Helper ##
 

@@ -24,8 +24,12 @@
 <%= @destination.recommendations %>
 </p>
 
-<% if current_user == @destination.user %>
+<% if authorized_to_edit?(@destination) %>
 <a href="/destinations/<%= @destination.id %>/edit">Edit Destination</a>
-Delete Destination
+<br>
+<form class="" action="/destinations/<%= @destination.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete Destination">
+</form>
 <% end %>
 
