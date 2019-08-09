@@ -24,5 +24,8 @@
 <%= @destination.recommendations %>
 </p>
 
+<% if current_user == @destination.user %>
 <a href="/destinations/<%= @destination.id %>/edit">Edit Destination</a>
+Delete Destination
+<% end %>
 
