@@ -1,1 +1,26 @@
 Show Page for Destination
+
+<h2><%= @destination.city %>, <%= @destination.state%>, <%= @destination.country %></h2>
+
+<p>Trip Details:<br>
+<%= @destination.trip_description %>
+</p>
+
+<p>Lodging/Accommodations:<br>
+    <%= @destination.slept_at %><br>
+    <%= @destination.slept_details %>
+</p>
+
+<p>Favorite Restaurant:<br>
+    <%= @destination.restaurant_fav %><br>
+    <%= @destination.restaurant_details %>
+</p>
+
+<p>Favorite Attraction:<br>
+    <%= @destination.attraction_fav %><br>
+    <%= @destination.attraction_details %>
+</p>
+
+<p>Recommendations:<br>
+<%= @destination.recommendations %>
+</p>
