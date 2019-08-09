@@ -43,6 +43,7 @@ class DestinationsController < ApplicationController
     end
 
     get '/destinations/:id/edit' do 
-        "edit destination"
+        @destination = Destination.find(params[:id])
+        erb :'/destinations/edit'
     end
 end

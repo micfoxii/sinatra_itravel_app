@@ -1,0 +1,27 @@
+edit destination
+<form class="" action="/destinations<%= @destination.id %>" method="post">
+<input type="hidden" name="_method" value="patch">
+ <h3>Destination: </h3>
+    <label for="city">City:</label>
+    <input type="text" name="city" value="<%= @destination.city %>">
+    <label for="state">State:</label>
+    <input type="text" name="state" value="<%= @destination.state %>">
+    <label for="country">Country:</label>
+    <input type="text" name="country" value="<%= @destination.country %>"><br><br>
+ <h3>Trip Details:</h3>   
+    <input type="text" name="trip_description" value="<%= @destination.trip_description %>"><br><br>
+ <h3>Lodging/Accomodations:</h3>   
+    <input type="text" name="slept_at" value="<%= @destination.slept_at %>"><br>
+    <input type="text" name="slept_details" value="<%= @destination.slept_details %>"><br><br>
+ <h3>Favorite Restaurant:</h3>
+    <input type="text" name="restaurant_fav" value="<%= @destination.restaurant_fav %>"><br>
+    <input type="text" name="restaurant_details" value="<%= @destination.restaurant_details %>"><br><br>
+ <h3>Favorite Attraction:</h3>
+    <input type="text" name="attraction_fav" value="<%= @destination.attraction_fav %>"><br>
+    <input type="text" name="attraction_details" value="<%= @destination.attraction_details %>"><br><br>
+ <h3>Additional Recommendations:</h3>
+    <input type="text" name="recommendations" value="<%= @destination.recommendations %>"><br><br>
+
+    <input type="submit" value= "Create Destination">
+
+</form>
