@@ -44,7 +44,11 @@ class DestinationsController < ApplicationController
 
     get '/destinations/:id/edit' do 
         destination_instance
-        erb :'/destinations/edit'
+        if @destination.user == current_user
+            erb :'/destinations/edit'
+        else
+            redirect "users/#{current_user.id}"
+        end
     end
 
     patch '/destinations/:id' do 
