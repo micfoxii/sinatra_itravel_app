@@ -38,12 +38,21 @@ class DestinationsController < ApplicationController
     end
 
     get '/destinations/:id' do
-        @destination = Destination.find(params[:id])
+        destination_instance
         erb :'/destinations/show'
     end
 
     get '/destinations/:id/edit' do 
-        @destination = Destination.find(params[:id])
+        destination_instance
         erb :'/destinations/edit'
+    end
+
+    patch '/destinations/:id' do 
+        destination_instance
+    end
+
+
+    def destination_instance
+        @destination = Destination.find(params[:id])
     end
 end
