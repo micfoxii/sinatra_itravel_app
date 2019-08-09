@@ -44,30 +44,34 @@ class DestinationsController < ApplicationController
 
     get '/destinations/:id/edit' do 
         destination_instance
-        if @destination.user == current_user
+        if @destination.user == current_user #TODO MAKE HELPER
             erb :'/destinations/edit'
         else
-            redirect "users/#{current_user.id}"
+            redirect "/users/#{current_user.id}"
         end
     end
 
     patch '/destinations/:id' do 
         destination_instance
-        @destination.update(
-            city: params[:city], 
-            state: params[:state],
-            country: params[:country],
-            trip_description: params[:trip_description],
-            slept_at: params[:slept_at],
-            slept_details: params[:slept_details],
-            restaurant_fav: params[:restaurant_fav],
-            restaurant_details: params[:restaurant_details],
-            attraction_fav: params[:attraction_fav],
-            attraction_details: params[:attraction_details],
-            recommendations: params[:recommendations],
-            user_id: current_user.id
-        )
-        redirect "/destinations/#{@destination.id}"
+        if @destination.user == current_user #TODO MAKE HELPER
+            @destination.update(
+                city: params[:city], 
+                state: params[:state],
+                country: params[:country],
+                trip_description: params[:trip_description],
+                slept_at: params[:slept_at],
+                slept_details: params[:slept_details],
+                restaurant_fav: params[:restaurant_fav],
+                restaurant_details: params[:restaurant_details],
+                attraction_fav: params[:attraction_fav],
+                attraction_details: params[:attraction_details],
+                recommendations: params[:recommendations],
+                user_id: current_user.id
+                )
+            redirect "/destinations/#{@destination.id}"
+        else
+           redirect "/users/#{current_user.id}"
+        end
     end
 
 
