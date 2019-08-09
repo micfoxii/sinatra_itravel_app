@@ -49,8 +49,25 @@ class DestinationsController < ApplicationController
 
     patch '/destinations/:id' do 
         destination_instance
+        @destination.update(
+            city: params[:city], 
+            state: params[:state],
+            country: params[:country],
+            trip_description: params[:trip_description],
+            slept_at: params[:slept_at],
+            slept_details: params[:slept_details],
+            restaurant_fav: params[:restaurant_fav],
+            restaurant_details: params[:restaurant_details],
+            attraction_fav: params[:attraction_fav],
+            attraction_details: params[:attraction_details],
+            recommendations: params[:recommendations],
+            user_id: current_user.id
+        )
+        redirect "/destinations/#{@destination.id}"
     end
 
+
+    ## Class Helper ##
 
     def destination_instance
         @destination = Destination.find(params[:id])

@@ -1,5 +1,5 @@
 edit destination
-<form class="" action="/destinations<%= @destination.id %>" method="post">
+<form class="" action="/destinations/<%= @destination.id %>" method="post">
 <input type="hidden" name="_method" value="patch">
  <h3>Destination: </h3>
     <label for="city">City:</label>
@@ -22,6 +22,6 @@ edit destination
  <h3>Additional Recommendations:</h3>
     <input type="text" name="recommendations" value="<%= @destination.recommendations %>"><br><br>
 
-    <input type="submit" value= "Create Destination">
+    <input type="submit" value= "Edit Destination">
 
 </form>
