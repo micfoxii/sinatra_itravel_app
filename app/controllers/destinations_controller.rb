@@ -1,11 +1,19 @@
 class DestinationsController < ApplicationController
 
-    get '/destinations' do 
+    get '/destinations' do
+        redirect_if_not_logged_in 
         @destinations = Destination.all 
         erb :'destinations/index'
     end
 
+    get '/user_destinations' do 
+        redirect_if_not_logged_in
+        @destinations = current_user.destinations
+        erb :'destinations/index'
+    end
+
     get '/destinations/new' do
+        redirect_if_not_logged_in
         if logged_in?
         erb:'/destinations/new'
         else
@@ -14,40 +22,50 @@ class DestinationsController < ApplicationController
     end
 
     post '/destinations' do
-        #if logged in values not nil save
-        if validate_destinations
-            @destination = Destination.create(
-                city: params[:city], 
-                state: params[:state],
-                country: params[:country],
-                trip_description: params[:trip_description],
-                slept_at: params[:slept_at],
-                slept_details: params[:slept_details],
-                restaurant_fav: params[:restaurant_fav],
-                restaurant_details: params[:restaurant_details],
-                attraction_fav: params[:attraction_fav],
-                attraction_details: params[:attraction_details],
-                recommendations: params[:recommendations],
-                user_id: current_user.id
-            )
-            redirect "/destinations/#{@destination.id}"
+        redirect_if_not_logged_in
+        @destination = current_user.destinations.build(params)
+        if @destination.save
+            redirect '/destinations'
         else
-            redirect '/destinations/new'
+            @errors = @destination.errors.full_messages
+            erb :'destinations/new'
         end
+        #if logged in values not nil save
+        # if validate_destinations
+        #     @destination = Destination.create(
+        #         city: params[:city], 
+        #         state: params[:state],
+        #         country: params[:country],
+        #         trip_description: params[:trip_description],
+        #         slept_at: params[:slept_at],
+        #         slept_details: params[:slept_details],
+        #         restaurant_fav: params[:restaurant_fav],
+        #         restaurant_details: params[:restaurant_details],
+        #         attraction_fav: params[:attraction_fav],
+        #         attraction_details: params[:attraction_details],
+        #         recommendations: params[:recommendations],
+        #         user_id: current_user.id
+        #     )
+        #     redirect "/destinations/#{@destination.id}"
+        # else
+        #     redirect '/destinations/new'
+        # end
 
-        if logged_in?
-            @destination.user_id = current_user.id
-            @destination.save
-        end
-        redirect "/destinations"
+        # if logged_in?
+        #     @destination.user_id = current_user.id
+        #     @destination.save
+        # end
+        # redirect "/destinations"
     end
 
     get '/destinations/:id' do
+        redirect_if_not_logged_in
         destination_instance
         erb :'/destinations/show'
     end
 
     get '/destinations/:id/edit' do 
+        redirect_if_not_logged_in
         destination_instance
         if @destination.user == current_user #TODO MAKE HELPER
             erb :'/destinations/edit'
@@ -57,6 +75,7 @@ class DestinationsController < ApplicationController
     end
 
     patch '/destinations/:id' do 
+        redirect_if_not_logged_in
         destination_instance
         if @destination.user == current_user #TODO MAKE HELPER
             @destination.update(
@@ -80,6 +99,7 @@ class DestinationsController < ApplicationController
     end
 
     delete '/destinations/:id' do 
+        redirect_if_not_logged_in
         destination_instance
         if authorized_to_edit?(@destination)
             @destination.destroy
