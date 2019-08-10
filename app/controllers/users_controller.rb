@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
+    use Rack::Flash
 
     #login routes
 
     get '/login' do
-        erb :login
+        erb :'/users/login'
     end
 
     #find user, authenticate user, login user, redirect user
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
         
         if @user.authenticate(params[:password])
             session[:user_id] = @user.id 
-            redirect "users/#{@user.id}"
+            redirect "/users/#{@user.id}"
         else
 
         end
@@ -22,14 +23,16 @@ class UsersController < ApplicationController
         erb :'/users/signup'
     end
 
-    post '/users' do
-        if validate_signup
-        @user = User.create(params)
-        session[:user_id] = @user.id
-        redirect "/users/#{@user.id}"
+    post '/signup' do
+        user = User.create(params)
+        if user.save
+            session[:user_id] = user.id
+            flash[:notice] = "Successfully signed in."
+            redirect '/' #"/users/#{@user.id}"
         else
             #TODO ADD FLASH MESSAGE
-        redirect 'users/signup'
+            @errors = user.errors.full_messages
+            erb :'users/signup'
         end
     end
 

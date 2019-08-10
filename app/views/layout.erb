@@ -15,10 +15,12 @@
   </head>
   <body>
     <div class="nav">
-      <a href="/logout">Log Out</a>
-      <a href="/destinations">All Destinations </a>
-      <a href="/destinations/new">Record New Destination </a>
-      <% ### Profile Page ###%>
+      <% if logged_in? %>
+        <a href="/logout">Log Out</a>
+        <a href="/destinations">All Destinations </a>
+        <a href="/destinations/new">Record New Destination </a>
+        <a href="/users/#{@user.id}">Welcome Page </a>
+      <% end %>
     </div>
     <div class="wrapper">
 

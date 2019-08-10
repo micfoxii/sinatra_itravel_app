@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -9,6 +10,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
+  use Rack::Flash 
   get "/" do
     if logged_in?
       redirect "/users/#{current_user.id}"
