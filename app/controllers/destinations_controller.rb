@@ -1,6 +1,5 @@
 class DestinationsController < ApplicationController
-    use Rack:Flash
-    
+
     get '/destinations' do 
         @destinations = Destination.all 
         erb :'destinations/index'

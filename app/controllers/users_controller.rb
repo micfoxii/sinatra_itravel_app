@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-    use Rack::Flash
-
     #login routes
 
     get '/login' do
@@ -27,7 +25,6 @@ class UsersController < ApplicationController
         user = User.create(params)
         if user.save
             session[:user_id] = user.id
-            flash[:notice] = "Successfully signed in."
             redirect '/' #"/users/#{@user.id}"
         else
             #TODO ADD FLASH MESSAGE
