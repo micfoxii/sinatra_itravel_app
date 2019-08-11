@@ -25,37 +25,11 @@ class DestinationsController < ApplicationController
         redirect_if_not_logged_in
         @destination = current_user.destinations.build(params)
         if @destination.save
-            redirect '/destinations'
+            redirect '/user_destinations'
         else
             @errors = @destination.errors.full_messages
             erb :'destinations/new'
         end
-        #if logged in values not nil save
-        # if validate_destinations
-        #     @destination = Destination.create(
-        #         city: params[:city], 
-        #         state: params[:state],
-        #         country: params[:country],
-        #         trip_description: params[:trip_description],
-        #         slept_at: params[:slept_at],
-        #         slept_details: params[:slept_details],
-        #         restaurant_fav: params[:restaurant_fav],
-        #         restaurant_details: params[:restaurant_details],
-        #         attraction_fav: params[:attraction_fav],
-        #         attraction_details: params[:attraction_details],
-        #         recommendations: params[:recommendations],
-        #         user_id: current_user.id
-        #     )
-        #     redirect "/destinations/#{@destination.id}"
-        # else
-        #     redirect '/destinations/new'
-        # end
-
-        # if logged_in?
-        #     @destination.user_id = current_user.id
-        #     @destination.save
-        # end
-        # redirect "/destinations"
     end
 
     get '/destinations/:id' do
@@ -78,20 +52,7 @@ class DestinationsController < ApplicationController
         redirect_if_not_logged_in
         destination_instance
         if @destination.user == current_user #TODO MAKE HELPER
-            @destination.update(
-                city: params[:city], 
-                state: params[:state],
-                country: params[:country],
-                trip_description: params[:trip_description],
-                slept_at: params[:slept_at],
-                slept_details: params[:slept_details],
-                restaurant_fav: params[:restaurant_fav],
-                restaurant_details: params[:restaurant_details],
-                attraction_fav: params[:attraction_fav],
-                attraction_details: params[:attraction_details],
-                recommendations: params[:recommendations],
-                user_id: current_user.id
-                )
+            @destination.update(params)
             redirect "/destinations/#{@destination.id}"
         else
            redirect "/users/#{current_user.id}"

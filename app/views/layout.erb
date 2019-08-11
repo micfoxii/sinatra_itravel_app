@@ -17,10 +17,10 @@
     <div class="nav">
       <% if logged_in? %>
         <a href="/logout">Log Out</a>
+        <% ### TO DO ADD WELCOME PAGE LINK %>
         <a href="/user_destinations">Your Destinations </a>
         <a href="/destinations">All Destinations </a>
         <a href="/destinations/new">Record New Destination </a>
-        <a href="/users/#{@user.id}">Welcome Page </a>
       <% end %>
       <% ### TO DO ADD LOGIN AND SIGN UP ### %>
     </div>

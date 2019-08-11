@@ -27,15 +27,6 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(id: session[:user_id]) ## ||= "or equals" calls on user find_by in first instance, then will call on current user
     end
 
-    def validate_signup
-      params[:name] != "" && params[:username] != "" && params[:email] != ""
-    end
-
-    def validate_destinations
-      #exclude state for nil values
-      params[:city] != "" && params[:state] !="" && params[:country] != "" && params[:trip_description] && params[:slept_at] != "" && params[:slept_details] != "" && params[:restaurant_fav] != "" && params[:restaurant_details] != "" && params[:attraction_fav] != "" && params[:attraction_details] != "" && params[:recommendations]
-    end
-
     def redirect_if_not_logged_in
       if !logged_in?
         redirect '/'
