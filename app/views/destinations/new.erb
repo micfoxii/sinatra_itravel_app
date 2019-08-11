@@ -1,3 +1,9 @@
+<% if @errors %>
+    <ul class="red">
+      <li><%= "Please fill out all details"  %></li>
+    </ul>
+<% end %>
+
 <h2>Create A New Destination</h2>
 <form class="" action="/destinations" method="post">
  <h3>Destination: </h3>

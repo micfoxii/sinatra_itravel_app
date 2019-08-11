@@ -1,5 +1,6 @@
 class DestinationsController < ApplicationController
-
+    use Rack::Flash
+    
     get '/destinations' do
         redirect_if_not_logged_in 
         @destinations = Destination.all 

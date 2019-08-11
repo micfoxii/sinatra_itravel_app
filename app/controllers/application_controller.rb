@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash3'
 
 class ApplicationController < Sinatra::Base
 
@@ -8,6 +9,8 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "secret"
   end 
+
+  use Rack::Flash
 
   get "/" do
     if logged_in?
