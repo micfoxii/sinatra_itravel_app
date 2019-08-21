@@ -25,7 +25,7 @@
 </p>
 
 <% if authorized_to_edit?(@destination) %>
-<a href="/destinations/<%= @destination.id %>/edit">Edit Destination</a>
+<a href="/destinations/<%= @destination.id %>/edit" >Edit Destination</a>
 <br>
 <form class="" action="/destinations/<%= @destination.id %>" method="post">
     <input type="hidden" name="_method" value="DELETE">

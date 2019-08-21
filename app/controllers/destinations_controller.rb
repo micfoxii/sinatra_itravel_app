@@ -3,14 +3,15 @@ class DestinationsController < ApplicationController
     
     get '/destinations' do
         redirect_if_not_logged_in 
-        @destinations = Destination.all 
+        # @destinations = Destination.all
+        @destinations = Destination.where("country LIKE '%#{params[:search]}%'")
         erb :'destinations/index'
     end
 
     get '/user_destinations' do 
         redirect_if_not_logged_in
         @destinations = current_user.destinations
-        erb :'destinations/index'
+        erb :'destinations/user_index'
     end
 
     get '/destinations/new' do

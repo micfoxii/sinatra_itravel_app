@@ -10,12 +10,11 @@ class UsersController < ApplicationController
     post '/login' do
         user = User.find_by(email: params[:email])
         
-        if user.authenticate(params[:password])
+        if user && user.authenticate(params[:password])
             session[:user_id] = user.id 
             # flash[:notice] = "You have successfully logged in. "
             redirect '/' #"/users/#{@user.id}"
         else
-            @errors = user.errors.full_messages
             erb :'users/signup'
         end
     end
